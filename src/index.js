@@ -173,14 +173,24 @@ bot.on("ready", async () => {
     console.log(clc.yellow("Listening for start command " + process.env.startCommand + " in initial channel."));
     console.log(clc.red("Warning: Do NOT use this bot in a public server, use it in a private server in a channel only you will be in."));
 })
-
+let responded = true // (for now)
 bot.on("message", async message => {
     
-
+  
+    if (responded == false) {
+      console.log(clc.red("Seems like dank memer wont responce to your messages.."))
+    }
 
     if (channel) {
         if (channel == message.channel) {
-
+            // Check if dank memer wont responce
+            if (message.author.id == "270904126974590976"){
+               responded = true
+               setTimeout(()=>{
+                responded = false
+               }, 62000)
+            }
+            
             //if (debug) {
             //    console.log(clc.yellow("Message received: " + message.content));
             //}
